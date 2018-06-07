@@ -1,0 +1,75 @@
+const express = require('express')
+const app = express()
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+var _ = require('lodash');
+
+
+//set the template engine ejs
+app.set('view engine', 'ejs')
+
+//middlewares
+app.use(express.static('public'))
+
+var rooms = [{ room: '', usernames: [] }], room;
+app.get('/', function(req, res){
+  res.render('index')
+  if(!_.isEmpty(req.query)){
+    console.log("private-user")
+    rooms.map(r => {
+      room = req.query.id;
+      if(!r.usernames.some(s => (s.username === req.query.username || s.id === req.query.id)) ) {
+        r.usernames.push(req.query);
+        r.room = room;
+      }
+      console.log("reques-rooms>>>>>>>>>>>>>", r)
+    })
+  } else {
+    room = ''
+  }
+});
+
+io.on('connection', function(socket){
+  //default username
+    //listen on change_username
+    socket.on('add_username', (data) => {
+      socket.username = data.username
+      rooms.map(r => {
+        if(!r.usernames.some(s => (s.username === socket.username|| s.id === socket.id))) {
+          if(room === r.room )
+            console.log("usernames",r.usernames, "room???????",room);
+            r.usernames.push({usrename: socket.username, id: socket.id });
+        }
+      })
+      io.emit('res',{message:"you are added"})
+      rooms.map(r => {
+        if(r.usernames.length >= 2) {
+          socket.emit('redirect', rooms);
+        } else {
+          socket.emit('link',  {link: '192.168.1.181:3000', id: socket.id, username: socket.username})
+        }
+      })
+    })
+
+    socket.on('join', (room) => {
+      console.log("room",room);
+      socket.join(room)
+    })
+
+    //listen on new_message
+    socket.on('new_message', (data) => {
+        //broadcast the new message
+      io.sockets.broadcast.emit('new_message', {message : data.message, username : socket.username});
+    })
+
+    //listen on typing
+    socket.on('typing', (data) => {
+      socket.broadcast.emit('typing', {username : socket.username})
+    })
+
+  socket.on('disconnect', function(){
+    console.log('disconnected');
+  });
+});
+
+http.listen(3000, '192.168.1.181');

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+    <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style.css" >
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <title>Chat App</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 id='rooms'>Chat Room</h1>
+    </header>
+    <section>
+      <div id="add_username" class="panel">
+        <label>Name</label>
+        <input id="username" type="text" />
+        <button id="send_username" class="btn btn-primary" type="button">Login</button>
+      </div>
+    </section>
+
+    <div id="link"><p>Use this url for private room chat</p></div>
+
+    <div id="chatbox">
+      <section id="chatroom">
+        <div id="feedback" class="chat-messages"></div>
+      </section>
+
+      <section id="input_zone">
+        <input id="message" class="vertical-align" type="text" />
+        <button id="send_message" class="btn btn-success" type="button">Send</button>
+      </section>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="chat.js"></script>
+  </body>
+</html>
