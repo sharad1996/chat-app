@@ -68,6 +68,10 @@ io.on('connection', function(socket){
       io.sockets["in"](socket.room).emit('new_message', {username: socket.username, message: data.message, id: socket.id});
     });
 
+    socket.on('img', function(imgData, color) {
+      socket.broadcast.emit('newImg', socket.nickname, imgData, color);
+    });
+
     socket.on('disconnect', function() {
       delete usernames[socket.username];
       io.sockets.emit('updateusers', usernames);

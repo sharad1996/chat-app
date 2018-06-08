@@ -123,8 +123,8 @@ input#username {
 }
 
 input#message {
-  display: inline-block;
   width: 45%;
+  bottom: -14px;
   height: 30px;
   font-family: 'Comfortaa', sans-serif;
   font-size: 2vh;
@@ -132,6 +132,23 @@ input#message {
 
 button#send_message {
   display: inline-block;
+}
+
+#historyMsg img {
+    max-width: 99%;
+}
+
+.imageLable {
+  position: relative;
+}
+#sendImage {
+  position: absolute;
+  width: 52px;
+  bottom: 2px;
+  cursor: pointer;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
 p.message {
@@ -170,14 +187,6 @@ input#username {
   font-family: 'Comfortaa', sans-serif;
   height: 25px;
   margin-top: 20px;
-}
-
-input#message {
-  display: inline-block;
-  width: 40%;
-  height: 50%;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: 2vh;
 }
 
 button#send_message {

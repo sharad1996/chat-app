@@ -34,11 +34,17 @@
 
     <div id="chatbox">
       <section id="chatroom">
+        <div id="historyMsg">
+            </div>
       </section>
 
       <section id="input_zone">
         <form id="send_message">
           <div id="feedback" class="chat-messages"></div>
+          <label for="sendImage" class="imageLable">
+            <input type="button" value="image"  />
+            <input id="sendImage" type="file" value="image"/>
+          </label>
           <input id="message" class="vertical-align" type="text" />
           <button id="send_message_button" type="submit" class="btn btn-success" type="button">Send</button>
         </form>

@@ -83,6 +83,10 @@ $(function(){
     socket.emit('typing')
   })
 
+  socket.on('newImg', function(user, img, color) {
+    that._displayImage(user, img, color);
+  });
+
   //Listen on typing
   socket.on('typing', (data) => {
     feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
@@ -91,5 +95,27 @@ $(function(){
   socket.on('store_username', function (username) {
     my_username = username;
   });
+
+  document.getElementById('sendImage').addEventListener('change', function() {
+    if (this.files.length != 0) {
+      var file = this.files[0],
+        reader = new FileReader();
+      reader.onload = function(e) {
+        this.value = '';
+        socket.emit('img', e.target.result);
+        displayImage('me', e.target.result);
+      };
+      reader.readAsDataURL(file);
+    };
+  }, false);
+
+  function displayImage(user, imgData, color) {
+    var container = document.getElementById('historyMsg'),
+      msgToDisplay = document.createElement('p'),
+      date = new Date().toTimeString().substr(0, 8);
+    msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+    container.appendChild(msgToDisplay);
+    container.scrollTop = container.scrollHeight;
+  }
 
 });
