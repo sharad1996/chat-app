@@ -42,6 +42,41 @@ div#add_username {
 .panel{
   height: 125px !important ;
   margin-left: 495px;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Comfortaa', sans-serif;
+  margin: 0px;
+}
+
+div#add_username{
+  border: 2px outset black;
+}
+
+div#add_username {
+  height: 10%;
+  display: inline-block;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.panel{
+  height: 125px !important ;
+  margin-left: 495px;
 }
 
 #link {
@@ -97,6 +132,56 @@ input#message {
 
 button#send_message {
   display: inline-block;
+}
+
+p.message {
+  margin: 0px;
+  width: 100%;
+  height: 40px;
+  font-size: 2vh;
+  font-family: 'Comfortaa', sans-serif;
+  padding: 1vh;
+}
+
+section#chatroom {
+  border: 2px inset black;
+  height: 80%;
+  width: 50%;
+  margin: auto;
+  overflow: auto;
+}
+
+section#input_zone {
+  height: 15%;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.vertical-align {
+  position: relative;
+  top: 25%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+input#username {
+  font-family: 'Comfortaa', sans-serif;
+  height: 25px;
+  margin-top: 20px;
+}
+
+input#message {
+  display: inline-block;
+  width: 40%;
+  height: 50%;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 2vh;
+}
+
+button#send_message {
+    display: inline-block;
 }
 
 p.message {

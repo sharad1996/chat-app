@@ -28,17 +28,6 @@ $(function(){
     socket.emit('join', {id : configId})
   })
 
-  var $chat = $('#chatroom');
-  var bottom = true;
-
-  $chat.bind('scroll', function () {
-    var $scrollTop = $(this).scrollTop();
-    var $innerHeight = $(this).innerHeight();
-    var $scrollHeight = this.scrollHeight;
-    bottom = $scrollTop + $innerHeight >= $scrollHeight ? true : false;
-  });
-
-
   send_message.submit(function(e){
     e.preventDefault();
     socket.emit('sendchat', {message : message.val()})
@@ -60,12 +49,12 @@ $(function(){
     feedback.html('');
     //var msg = socket.id === data.id ? $("<div class='message-box-holder'><div class='message-box'>" + data.message + "</div></p></div>") : $("<div class='message-box-holder'><div class='message-sender' onclick='send_individual_msg(data.id)' >" + data.username + "</div><div class='message-box message-partner'>" + data.message + "</div></p></div>");
     chatroom.append("<div class='update-box-holder'><div class='update-box'>" + data.username + data.message + "</div></div>")
+    //var msg = socket.id === data.id ? $("<div class='message-box-holder'><div class='message-box'>" + data.message + "</div></p></div>") : $("<div class='message-box-holder'><div class='message-sender' onclick='send_individual_msg(data.id)' >" + data.username + "</div><div class='message-box message-partner'>" + data.message + "</div></p></div>");
   })
 
   socket.on("link", (data) => {
     link.show()
     feedback.html('');
-    message.val('');
     var url = $('<strong />').append($("<p />").addClass("message").append($("<a >").attr({href: ("?id=" + data.id), target: '_blank'}).text('room url')  ));
     link.append(url)
   })
