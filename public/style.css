@@ -134,8 +134,8 @@ button#send_message {
   display: inline-block;
 }
 
-#historyMsg img {
-    max-width: 99%;
+#chatroom img {
+  max-width: 99%;
 }
 
 .imageLable {

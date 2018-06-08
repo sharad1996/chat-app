@@ -110,7 +110,7 @@ $(function(){
   }, false);
 
   function displayImage(user, imgData) {
-    var container = document.getElementById('historyMsg'),
+    var container = document.getElementById('chatroom'),
       msgToDisplay = document.createElement('p'),
       date = new Date().toTimeString().substr(0, 8);
     msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
