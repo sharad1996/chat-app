@@ -49,13 +49,13 @@ io.on('connection', function(socket){
       socket.room = room || socket.id;
       //console.log("room-----------",socket.room, "username", socket.username)
       usernames[data.username] = socket.id;
-      if(room)
-        io.sockets["in"](socket.room).emit('updatechat', {username: data.username  , message: '  has created this room'});
+      if(!room)
+        io.sockets["in"](socket.room).emit('updatechat', {username: 'you'  , message: '  created this room'});
       // echo to client they've connectedsocket.emit('updatechat', 'SERVER', 'you have connected to Lobby');
       io.sockets["in"](socket.room).emit('updatechat', {username: data.username  , message: '  has connected to this room', color: true});
       socket.emit('updaterooms', rooms, socket.room);
       noOfUser = Object.keys(usernames).length;
-      if(noOfUser >= 1 ) {
+      if(noOfUser >= 2 ) {
         socket.emit('chat_open');
       } else {
         socket.emit('link', {link : '192.168.1.181:3000', id: socket.id, username: data.username, room: socket.room})
