@@ -40,9 +40,9 @@ $(function(){
       message.val('');
     }
     var msg = socket.id === data.id ? $("<div id='scroll-div' class='message-box-holder'><div id='scroll-message' class='message-box'>" + data.message + "</div></div>") : $("<div id='scroll-div' class='message-box-holder'><div class='message-sender' onclick='send_individual_msg(data.id)' >" + data.username + "</div><div id='scroll-message' class='message-box message-partner'>" + data.message + "</div></div>");
+    chatroom.append(msg);
     var objDiv = document.getElementById("chatroom");
     objDiv.scrollTop = objDiv.scrollHeight;
-    chatroom.append(msg)
   })
 
   socket.on("updatechat", (data) => {
